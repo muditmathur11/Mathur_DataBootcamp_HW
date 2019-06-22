@@ -1,0 +1,59 @@
+Sub WallStreet()
+
+'code to run script below on all worksheets of workbook
+Dim ws As Worksheet
+    For Each ws In Worksheets
+    ws.Activate
+
+
+'Declare variables
+Dim Ticker As String
+Dim Volume As Double
+
+'Set row being used in this script
+Dim Summary_Table_Row As Integer
+
+'Initialize variables
+Volume = 0
+Summary_Table_Row = 2
+
+'Inputs the title of output values in each sheet
+Range("J" & 1).Value = "Ticker Symbol"
+Range("K" & 1).Value = "Total Stock Value"
+
+'Set the total number of rows
+Total_Rows = Cells(Rows.Count, "A").End(xlUp).Row
+
+
+'For loop
+For i = 2 To Total_Rows
+
+    
+        'Statements that run if two succeeding rows contain the same ticker symbol
+        If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+    
+            Ticker = Cells(i, 1).Value
+    
+            Volume = Volume + Cells(i, 7).Value
+            
+             YearlyChange = Cells(i, 6).Value - Cells(i - CountTicker, 3).Value
+    
+            Range("J" & Summary_Table_Row).Value = Ticker
+    
+            Range("K" & Summary_Table_Row).Value = Volume
+    
+            Summary_Table_Row = Summary_Table_Row + 1
+    
+            Volume = 0
+            
+        'statement that runs if two succeeding rows contain the same ticker symbol
+        Else
+            Volume = Volume + Cells(i, 7).Value
+            
+        End If
+        
+    Next i
+    
+Next ws
+
+End Sub
