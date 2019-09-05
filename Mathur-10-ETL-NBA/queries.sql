@@ -1,0 +1,35 @@
+-- Create tables for data to be loaded into
+CREATE TABLE attendance (
+TEAM TEXT PRIMARY KEY,
+TOTAL INT,
+PCT NUMERIC);
+
+CREATE TABLE team_value (
+TEAM TEXT PRIMARY KEY,
+VALUE_MILLIONS NUMERIC);
+
+CREATE TABLE elo_rating (
+TEAM TEXT PRIMARY KEY,
+ELO INT);
+
+CREATE TABLE players_stats (
+TEAM TEXT PRIMARY KEY,
+PLAYER TEXT,
+POINTS INT
+);
+
+CREATE TABLE nba_valuations (
+TEAM_NAME TEXT PRIMARY KEY,
+TOTAL_ATTENDANCE INT,
+PCT_ATTENDANCE NUMERIC,
+ELO INT,
+PLAYER TEXT,
+POINTS_BY_PLAYER INT,
+VALUE_MILLIONS NUMERIC);
+
+-- Query to check successful load
+SELECT * FROM attendance;
+SELECT * FROM team_value;
+SELECT * FROM elo_rating;
+SELECT * FROM players_stats;
+SELECT * FROM nba_valuations;
